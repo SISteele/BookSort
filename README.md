@@ -86,10 +86,10 @@ A successful execution will display a message similar to the following:
 ```
 Started TermprojectApplication in X.XXX seconds (JVM running for X.XXX)
 ```
-With the program running, you may visit [this link](http://localhost:8080/home) to access the site.
+With the program running, you may visit [this link](http://localhost:8081/home) to access the site.
 Alternatively, the website may be accessed by typing the following into your browser:
 ```
-localhost:8080
+localhost:8081
 ```
 
 
