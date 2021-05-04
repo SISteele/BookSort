@@ -2,6 +2,19 @@ import mysql.connector
 from mysql.connector import Error
 import pandas as pd
 import pyodbc
+import os
+import time
+
+# Arpinar's code. Feel free to add or remove as needed.
+username = input('What is your mysql username? ')
+password = input('What is your mysql password? ')
+input_file = 'music.sql'
+mysql_login = 'mysql -u' + username + ' -p' + password + ' < ' + input_file
+os.system(mysql_login)
+os.system('cd MusicApp')
+os.system('javac -cp MusicApp/lib/mysql-connector-java-8.0.16.jar  -d MusicApp/bin MusicApp/src/controller/*.java MusicApp/src/model/*.java MusicApp/src/view/*.java MusicApp/src/model/DAO/*.java')
+time.sleep(20)
+os.system('java MusicApp/bin/controller/MusicApp')
 
 # Connect to SQL server. ENTER YOUR SERVER NAME WHERE IT SAYS 'Server=SERVERNAME;'
 conn = pyodbc.connect('Driver={SQL Server};'
