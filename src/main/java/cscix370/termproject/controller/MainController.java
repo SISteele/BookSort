@@ -11,13 +11,17 @@ public class MainController {
 
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-	public ModelAndView displayHomepage(ModelAndView modelAndView) {
-        System.out.println("TEST");
-        
-        modelAndView.setViewName("home");
+	public ModelAndView redirectHome(ModelAndView modelAndView) {
+        modelAndView.setViewName("redirect:home");
 		return modelAndView;
     }
     
+
+    @RequestMapping(value = "/home", method = RequestMethod.GET)
+	public ModelAndView displayHomepage(ModelAndView modelAndView) {
+        modelAndView.setViewName("home");
+		return modelAndView;
+    }
 
     
 
