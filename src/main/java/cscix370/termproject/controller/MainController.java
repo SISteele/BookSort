@@ -32,7 +32,7 @@ public class MainController {
 
     @RequestMapping(value = "/home", method = RequestMethod.GET)
 	public ModelAndView displayHomepage(ModelAndView modelAndView) {
-        modelAndView.setViewName("home");
+        modelAndView.setViewName("main");
 		return modelAndView;
     }
 
@@ -42,12 +42,12 @@ public class MainController {
 
         List<Books> books = booksService.findTop100();
 
-        for(Books b: books){
-            System.out.println(b.getTitle() + " ---- " + b.getAverageRating());
-        }
+        // for(Books b: books){
+        //     System.out.println(b.getTitle() + " ---- " + b.getAverageRating());
+        // }
+        modelAndView.addObject("books", books);
 
-
-        modelAndView.setViewName("home");
+        modelAndView.setViewName("books");
 		return modelAndView;
     }
 
@@ -57,27 +57,35 @@ public class MainController {
 
         List<BooksTopAuthors> books = booksService.findTop100Authors();
 
-        for(BooksTopAuthors b: books){
-            System.out.println(b.getAuthors() + " ---- " + b.getRating() + " ---- " + b.getCount());
-        }
+        // for(BooksTopAuthors b: books){
+        //     System.out.println(b.getAuthors() + " ---- " + b.getRating() + " ---- " + b.getCount());
+        // }
 
+        modelAndView.addObject("books", books);
 
-        modelAndView.setViewName("home");
+        modelAndView.setViewName("authors");
 		return modelAndView;
     }
 
 
-    @RequestMapping(value = "/toread", method = RequestMethod.GET)
-	public ModelAndView getTopToRead(ModelAndView modelAndView) {
+    @RequestMapping(value = "/bucketlist", method = RequestMethod.GET)
+	public ModelAndView getBucketList(ModelAndView modelAndView) {
 
         List<Books> books = booksService.findTop100ToRead();
 
-        for(Books b: books){
-            System.out.println(b.getTitle() + " ---- " + b.getAuthors());
-        }
+        // for(Books b: books){
+        //     System.out.println(b);
+        // }
+        modelAndView.addObject("books", books);
 
+        modelAndView.setViewName("bucketlist");
+		return modelAndView;
+    }
 
-        modelAndView.setViewName("home");
+    @RequestMapping(value = "/search", method = RequestMethod.GET)
+	public ModelAndView search(ModelAndView modelAndView) {
+
+        modelAndView.setViewName("search");
 		return modelAndView;
     }
 

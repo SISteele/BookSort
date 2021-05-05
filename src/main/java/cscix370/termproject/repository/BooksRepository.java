@@ -21,6 +21,7 @@ public interface BooksRepository extends CrudRepository<Books, Integer>{
     @Query(
         value = "SELECT authors as authors, AVG(average_rating) as rating, COUNT(DISTINCT book_id) as count FROM books "
         + "GROUP BY authors "
+        + "HAVING COUNT(DISTINCT book_id) > 5 "
         + "ORDER BY AVG(average_rating) DESC "
         + "LIMIT 100",
         nativeQuery = true

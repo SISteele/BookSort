@@ -37,7 +37,8 @@ public class Books {
     @Column(name = "average_rating")
     private Double averageRating;
     
-    private Integer ratings_count;
+    @Column(name = "ratings_count")
+    private Integer ratingsCount;
     
     private Integer work_ratings_count;
     
@@ -72,6 +73,10 @@ public class Books {
 
     public String getUrl(){
         return url;
+    }
+
+    public Integer getRatingsCount(){
+        return ratingsCount;
     }
 
 }

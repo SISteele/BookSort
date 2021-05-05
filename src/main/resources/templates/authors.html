@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>SQLad Term Project CSCI X370</title>
+<style type="text/css">
+body
+{
+  background-color: #f2f2f2;
+}
+#menu
+{
+  font-family: sans-serif;
+  font-size: 22px;
+  color: white;
+  font-weight: bolder;
+  padding: 6px;
+  background-color: #5cd65c;
+  border: 2px solid #2eb82e;
+  margin: auto;
+}
+a:link
+{
+  color: white;
+}
+a:visited
+{
+  color: white;
+}
+#heading
+{
+ font-family: sans-serif;
+ font-size: 32px;
+ color: white;
+ font-weight: bolder;
+ border: 2px solid #2eb82e;
+ width: 505px;
+ background-color: #5cd65c;
+ margin: auto;
+ text-align: center;
+ vertical-align: middle;
+}
+#description
+{
+  padding: 50px;
+  font-family: sans-serif;
+  font-size: 25px;
+  text-align: center;
+}
+</style>
+
+</head>
+
+<body>
+
+</body>
+
+<div id="menu">
+  <a th:href="@{/home}">Home</a>
+  <a th:href="@{/topbooks}">Top Books</a>
+  <a th:href="@{/topauthors}">Top Authors</a>
+  <a th:href="@{/bucketlist}">Bucket List</a>
+  <a th:href="@{/search}">Search</a>
+</div>
+
+<br>
+<br>
+
+<div id="heading">
+  Goodreads Ratings Search Tool
+</div>
+
+
+
+<div id="description">
+  Listed below are the top 100 rated authors on Goodreads who have published at least 5 books. These authors have been ranked according to their average book rating across all of their books on Goodreads as found from a database consisting of more than a million individual ratings.
+</div>
+
+<div id="results">
+  <table style="width:50%" align="center">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Average Book Rating</th>
+        <th>Number Of Books</th>
+      </tr>
+    </thead>
+    <tbody>
+     <tr th:each="book : ${books}">
+      <td><span th:text="${book.authors}"></span></td>
+      <td><span th:text="${book.rating}"></span></td>
+      <td><span th:text="${book.count}"></span></td>
+    </tr> 
+    </tbody>
+    
+  </table>
+</div>
+
+</html>
