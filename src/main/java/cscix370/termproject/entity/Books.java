@@ -53,6 +53,9 @@ public class Books {
     
     private Integer ratings_5;
 
+    @Column(name = "image_url")
+    private String url;
+
     
 
     public String getTitle(){
@@ -65,6 +68,10 @@ public class Books {
 
     public String getAuthors(){
         return authors;
+    }
+
+    public String getUrl(){
+        return url;
     }
 
 }

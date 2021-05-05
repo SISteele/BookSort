@@ -38,7 +38,7 @@ to_read = pd.DataFrame(to_readRaw, columns= ['user_id', 'book_id'])
 
 booksRaw = pd.read_csv (r'./books.csv')
 booksRaw = booksRaw.where((pd.notnull(booksRaw)), None)
-books = pd.DataFrame(booksRaw, columns= ['goodreads_book_id', 'book_id', 'best_book_id','work_id', 'books_count', 'isbn', 'authors', 'original_publication_year', 'original_title','title', 'language_code', 'average_rating', 'ratings_count', 'work_ratings_count', 'work_text_reviews_count', 'ratings_1', 'ratings_2', 'ratings_3', 'ratings_4', 'ratings_5'])
+books = pd.DataFrame(booksRaw, columns= ['goodreads_book_id', 'book_id', 'best_book_id','work_id', 'books_count', 'isbn', 'authors', 'original_publication_year', 'original_title','title', 'language_code', 'average_rating', 'ratings_count', 'work_ratings_count', 'work_text_reviews_count', 'ratings_1', 'ratings_2', 'ratings_3', 'ratings_4', 'ratings_5', 'image_url'])
 
 book_tagsRaw = pd.read_csv (r'./book_tags.csv')
 book_tags = pd.DataFrame(book_tagsRaw, columns= ['goodreads_book_id', 'tag_id', 'count'])
@@ -50,7 +50,7 @@ tags = pd.DataFrame(tagsRaw, columns= ['tag_id', 'tag_name'])
 # Create tables to import CSV data into
 cursor.execute('CREATE TABLE IF NOT EXISTS ratings (user_id INT(11), book_id INT(11), rating INT(11))')
 cursor.execute('CREATE TABLE IF NOT EXISTS to_read (user_id INT(11), book_id INT(11))')
-cursor.execute('CREATE TABLE IF NOT EXISTS books (goodreads_book_id INT(11), book_id INT(11), best_book_id INT(11), work_id INT(11), books_count INT(11), isbn INT(11), authors VARCHAR(100), original_publication_year INT(11), original_title VARCHAR(45), title VARCHAR(45), language_code VARCHAR(45), average_rating FLOAT, ratings_count INT(11), work_ratings_count INT(11), work_text_reviews_count INT(11), ratings_1 INT(11), ratings_2 INT(11), ratings_3 INT(11), ratings_4 INT(11), ratings_5 INT(11))')
+cursor.execute('CREATE TABLE IF NOT EXISTS books (goodreads_book_id INT(11), book_id INT(11), best_book_id INT(11), work_id INT(11), books_count INT(11), isbn INT(11), authors VARCHAR(100), original_publication_year INT(11), original_title VARCHAR(45), title VARCHAR(45), language_code VARCHAR(45), average_rating FLOAT, ratings_count INT(11), work_ratings_count INT(11), work_text_reviews_count INT(11), ratings_1 INT(11), ratings_2 INT(11), ratings_3 INT(11), ratings_4 INT(11), ratings_5 INT(11), image_url VARCHAR(200))')
 cursor.execute('CREATE TABLE IF NOT EXISTS book_tags (goodreads_book_id INT(11), tag_id INT(11), count INT(11))')
 cursor.execute('CREATE TABLE IF NOT EXISTS tags (tag_id INT(11), tag_name VARCHAR(45))')
 
@@ -58,8 +58,8 @@ cursor.execute('CREATE TABLE IF NOT EXISTS tags (tag_id INT(11), tag_name VARCHA
 # Insert the dataframes into the respective tables
 for row in books.itertuples():
     cursor.execute('''
-                  INSERT INTO books (goodreads_book_id, book_id, best_book_id, work_id, books_count, isbn, authors, original_publication_year, original_title, title, language_code, average_rating, ratings_count, work_ratings_count, work_text_reviews_count, ratings_1, ratings_2, ratings_3, ratings_4, ratings_5)
-                  VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
+                  INSERT INTO books (goodreads_book_id, book_id, best_book_id, work_id, books_count, isbn, authors, original_publication_year, original_title, title, language_code, average_rating, ratings_count, work_ratings_count, work_text_reviews_count, ratings_1, ratings_2, ratings_3, ratings_4, ratings_5, image_url)
+                  VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
                   ''',
                   (row.goodreads_book_id,
                   row.book_id,
@@ -80,7 +80,8 @@ for row in books.itertuples():
                   row.ratings_2,
                   row.ratings_3,
                   row.ratings_4,
-                  row.ratings_5)
+                  row.ratings_5,
+                  row.image_url)
                   )
 
 mydb.commit()
