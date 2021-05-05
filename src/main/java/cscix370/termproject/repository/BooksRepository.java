@@ -1,0 +1,45 @@
+package cscix370.termproject.repository;
+
+import cscix370.termproject.entity.Books;
+import cscix370.termproject.interfaces.BooksTopAuthors;
+
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
+
+import java.util.List;
+
+public interface BooksRepository extends CrudRepository<Books, Integer>{
+
+    @Query(
+        value = "SELECT DISTINCT * FROM books ORDER BY average_rating DESC LIMIT 100",
+        nativeQuery = true
+    )
+    public List<Books> findTop100();
+    
+
+    @Query(
+        value = "SELECT authors as authors, AVG(average_rating) as rating, COUNT(DISTINCT book_id) as count FROM books "
+        + "GROUP BY authors "
+        + "ORDER BY AVG(average_rating) DESC "
+        + "LIMIT 100",
+        nativeQuery = true
+    )
+    public List<BooksTopAuthors> findTop100Authors();
+
+
+    @Query(
+        value = "SELECT DISTINCT * "
+                + "FROM " 
+                    + "(SELECT book_id, COUNT(book_id) AS toread " 
+                    + "FROM to_read "
+                    + "GROUP BY book_id "
+                    + "ORDER BY COUNT(book_id) DESC "
+                    + "LIMIT 100) as b "
+                + "INNER JOIN books "
+                + "ON books.book_id = b.book_id "
+                + "ORDER BY toread DESC",
+        nativeQuery = true
+    )
+    public List<Books> findTop100ToRead();
+}

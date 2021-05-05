@@ -34,7 +34,8 @@ public class Books {
     
     private String language_code;
     
-    private Double average_rating;
+    @Column(name = "average_rating")
+    private Double averageRating;
     
     private Integer ratings_count;
     
@@ -54,6 +55,16 @@ public class Books {
 
     
 
+    public String getTitle(){
+        return title;
+    }
 
+    public Double getAverageRating(){
+        return averageRating;
+    }
+
+    public String getAuthors(){
+        return authors;
+    }
 
 }
