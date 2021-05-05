@@ -78,11 +78,21 @@ a:visited
 
 
 <div id="options">
-  <form name = "search" method = "post">
+  <form th:action="@{/search}" method="POST">
     <div class="form-group">
       <label for="search">Search:</label>
-      <input type="text" placeholder="Search...">
+      <input th:name="query" type="text" placeholder="Search...">
     </div>
+    <br>
+    <div>
+      <select th:name="option">
+        <option value="author"></option>
+        <option value="title"></option>
+      </select>
+    </div>
+
+    <button type="submit"></button>
+  </form>
 </div>
 
 <br>

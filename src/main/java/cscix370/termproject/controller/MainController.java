@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import cscix370.termproject.entity.Books;
 import cscix370.termproject.service.BooksService;
@@ -89,6 +90,14 @@ public class MainController {
 		return modelAndView;
     }
 
+    @RequestMapping(value = "/search", method = RequestMethod.POST)
+	public ModelAndView search(ModelAndView modelAndView, @RequestParam(value = "query", required = true) String query, @RequestParam(value = "option", required = true) String option) {
+
+        System.out.println(query);
+        System.out.println(option);
+        modelAndView.setViewName("search");
+		return modelAndView;
+    }
     
 
 }
