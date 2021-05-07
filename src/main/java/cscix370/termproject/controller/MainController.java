@@ -17,16 +17,22 @@ import cscix370.termproject.entity.Tags;
 import cscix370.termproject.service.TagsService;
 import cscix370.termproject.interfaces.TagsTopTags;
 
+import cscix370.termproject.entity.Book_tags;
+import cscix370.termproject.service.Book_tagsService;
+
+
 @Controller
 public class MainController {
     
     BooksService booksService;
     TagsService tagsService;
+    Book_tagsService book_tagsService;
 
     @Autowired
-    public MainController(BooksService booksService, TagsService tagsService){
+    public MainController(BooksService booksService, TagsService tagsService, Book_tagsService book_tagsService){
         this.booksService = booksService;
         this.tagsService = tagsService;
+        this.book_tagsService = book_tagsService;
     }
 
 
@@ -117,6 +123,11 @@ public class MainController {
             System.out.println(id);
         }
 
+        List<Integer> goodreads_ids = book_tagsService.findGoodreadsIds(ids);
+        System.out.println("\n---Goodreads IDS---");
+        for(Integer id: goodreads_ids){
+            System.out.println(id);
+        }
         
         modelAndView.setViewName("redirect:search");
 		return modelAndView;
