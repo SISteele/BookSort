@@ -129,7 +129,14 @@ public class MainController {
             for(Integer id: goodreads_ids){
                 System.out.println(id);
             }
-        }
+
+            List<Books> books = booksService.findBooksByGoodreadsIds(goodreads_ids);
+            System.out.println("\n---Books---");
+            for(Books book: books){
+                System.out.println(book.getTitle());
+            }
+
+        } // tags not null
         
         
         modelAndView.setViewName("redirect:search");

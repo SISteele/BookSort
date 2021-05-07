@@ -43,4 +43,14 @@ public interface BooksRepository extends CrudRepository<Books, Integer>{
         nativeQuery = true
     )
     public List<Books> findTop100ToRead();
+
+
+
+    @Query(
+        value = "SELECT * FROM books "
+                + "WHERE goodreads_book_id "
+                + "IN (:ids)",
+        nativeQuery = true
+    )
+    public List<Books> findBooksByGoodreadsIds(@Param("ids") List<Integer> ids);
 }

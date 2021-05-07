@@ -33,4 +33,8 @@ public class BooksService {
     public List<Books> findTop100ToRead(){
         return booksRepository.findTop100ToRead();
     }
+
+    public List<Books> findBooksByGoodreadsIds(List<Integer> ids){
+        return booksRepository.findBooksByGoodreadsIds(ids);
+    }
 }
