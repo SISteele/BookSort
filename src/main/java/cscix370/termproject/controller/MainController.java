@@ -93,24 +93,27 @@ public class MainController {
 	public ModelAndView search(ModelAndView modelAndView) {
 
         List<TagsTopTags> tags = tagsService.findTop100();
-
-        for(TagsTopTags tag: tags){
-            System.out.println(tag.getName());
-        }
+        modelAndView.addObject("tags", tags);
+        
 
         modelAndView.setViewName("search");
 		return modelAndView;
     }
 
     @RequestMapping(value = "/search", method = RequestMethod.POST)
-	public ModelAndView search(ModelAndView modelAndView, @RequestParam(value = "query", required = true) String query, @RequestParam(value = "option", required = true) String option) {
+	public ModelAndView search(ModelAndView modelAndView, @RequestParam(value = "query", required = false) String query, @RequestParam(value = "option", required = false) String option, @RequestParam(value = "tags", required = false) List<String> tags) {
 
         System.out.println(query);
         System.out.println(option);
 
+        System.out.println("\n---Tags---");
+        for(String tag: tags){
+            System.out.println(tag);
+        }
 
 
-        modelAndView.setViewName("search");
+        
+        modelAndView.setViewName("redirect:search");
 		return modelAndView;
     }
     
