@@ -112,22 +112,25 @@ public class MainController {
         System.out.println(query);
         System.out.println(option);
 
-        System.out.println("\n---Tags---");
-        for(String tag: tags){
-            System.out.println(tag);
-        }
+        if(tags != null){
+            System.out.println("\n---Tags---");
+            for(String tag: tags){
+                System.out.println(tag);
+            }
 
-        List<Integer> ids = tagsService.findTagIds(tags);
-        System.out.println("\n---Tags IDS---");
-        for(Integer id: ids){
-            System.out.println(id);
-        }
+            List<Integer> ids = tagsService.findTagIds(tags);
+            System.out.println("\n---Tags IDS---");
+            for(Integer id: ids){
+                System.out.println(id);
+            }
 
-        List<Integer> goodreads_ids = book_tagsService.findGoodreadsIds(ids);
-        System.out.println("\n---Goodreads IDS---");
-        for(Integer id: goodreads_ids){
-            System.out.println(id);
+            List<Integer> goodreads_ids = book_tagsService.findGoodreadsIds(ids);
+            System.out.println("\n---Goodreads IDS---");
+            for(Integer id: goodreads_ids){
+                System.out.println(id);
+            }
         }
+        
         
         modelAndView.setViewName("redirect:search");
 		return modelAndView;
