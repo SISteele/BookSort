@@ -13,14 +13,20 @@ import cscix370.termproject.entity.Books;
 import cscix370.termproject.service.BooksService;
 import cscix370.termproject.interfaces.BooksTopAuthors;
 
+import cscix370.termproject.entity.Tags;
+import cscix370.termproject.service.TagsService;
+import cscix370.termproject.interfaces.TagsTopTags;
+
 @Controller
 public class MainController {
     
     BooksService booksService;
+    TagsService tagsService;
 
     @Autowired
-    public MainController(BooksService booksService){
+    public MainController(BooksService booksService, TagsService tagsService){
         this.booksService = booksService;
+        this.tagsService = tagsService;
     }
 
 
@@ -86,6 +92,12 @@ public class MainController {
     @RequestMapping(value = "/search", method = RequestMethod.GET)
 	public ModelAndView search(ModelAndView modelAndView) {
 
+        List<TagsTopTags> tags = tagsService.findTop100();
+
+        for(TagsTopTags tag: tags){
+            System.out.println(tag.getName());
+        }
+
         modelAndView.setViewName("search");
 		return modelAndView;
     }
@@ -95,6 +107,9 @@ public class MainController {
 
         System.out.println(query);
         System.out.println(option);
+
+
+
         modelAndView.setViewName("search");
 		return modelAndView;
     }
