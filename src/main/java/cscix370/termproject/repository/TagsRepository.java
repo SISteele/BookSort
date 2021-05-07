@@ -24,4 +24,14 @@ public interface TagsRepository extends CrudRepository<Tags, Integer>{
     )
     public List<TagsTopTags> findTop100();
 
+
+
+    @Query(
+        value = "SELECT tag_id FROM tags "
+                + "WHERE tag_name "
+                + "IN (:tags)",
+        nativeQuery = true
+    )
+    public List<Integer> findTagIds(@Param("tags") List<String> tags);
+
 }

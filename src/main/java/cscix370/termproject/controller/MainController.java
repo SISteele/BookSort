@@ -111,6 +111,11 @@ public class MainController {
             System.out.println(tag);
         }
 
+        List<Integer> ids = tagsService.findTagIds(tags);
+        System.out.println("\n---Tags IDS---");
+        for(Integer id: ids){
+            System.out.println(id);
+        }
 
         
         modelAndView.setViewName("redirect:search");

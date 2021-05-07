@@ -27,6 +27,11 @@ public class TagsService {
     }
 
 
+    public List<Integer> findTagIds(List<String> tags){
+        return tagsRepository.findTagIds(tags);
+    }
+
+
 
 
 }
