@@ -1,3 +1,7 @@
+.text-xs {
+    font-size: smaller;
+}
+
 .top-wrapper {
     min-height: 60px;
     flex-grow: 1;
@@ -16,4 +20,46 @@
 
 .app-body {
     height: 100%;
+    margin-left: 3em;
+    margin-right: 3em;
+}
+
+.fill {
+    height: 100%;
+    width: 100%;
+}
+
+.content-side {
+
+}
+
+
+.advanced-search {
+    min-width: 150px;
+}
+
+.accordion-header {
+    border-bottom: none;
+}
+
+.accordion-collapse {
+    border-top: none;
+}
+
+
+/* Tag selection (max 2 items per row)*/
+.tag {
+    width: 100%
+}
+
+.tagcontainer {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.tagcontainer > div {
+    flex: 50%; /* or - flex: 0 50% - or - flex-basis: 50% - */
+    /*demo*/
+
+    margin-bottom: 10px;
 }
