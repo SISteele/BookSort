@@ -16,6 +16,8 @@
     />
     <!-- MDB -->
     <link rel="stylesheet" th:href="@{/css/mdb.min.css}" />
+    <!--css files-->
+    <link rel="stylesheet" th:href="@{/css/search.css}" />
     <!--other styling-->
     <style type="text/css">
         body
@@ -68,110 +70,117 @@
         </style>
   </head>
   <body>
-
-  <!--Navbar-->
-    <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
-      <div class="container-fluid">
-        <a class="navbar-brand" th:href="@{/home}">Goodreads</a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-mdb-toggle="collapse"
-          data-mdb-target="#navbarNavAltMarkup"
-          aria-controls="navbarNavAltMarkup"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <i class="fas fa-bars"></i>
-        </button>
-        <div class="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
-          <div class="navbar-nav">
-            <a class="nav-link" th:href="@{/home}">Home</a>
-            <a class="nav-link" th:href="@{/topbooks}">Top Books</a>
-            <a class="nav-link" th:href="@{/topauthors}">Top Authors</a>
-            <a class="nav-link" th:href="@{/bucketlist}">Bucket List</a>
-            <a class="nav-link active" aria-current="page" th:href="@{/search}">Search</a>
+  <div class="app">
+  <div class="app-content">
+    <div class="app-header">
+      <!--Navbar-->
+      <div class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" th:href="@{/home}">Goodreads</a>
+          <button
+                  class="navbar-toggler"
+                  type="button"
+                  data-mdb-toggle="collapse"
+                  data-mdb-target="#navbarNavAltMarkup"
+                  aria-controls="navbarNavAltMarkup"
+                  aria-expanded="false"
+                  aria-label="Toggle navigation"
+          >
+            <i class="fas fa-bars"></i>
+          </button>
+          <div class="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+              <a class="nav-link" th:href="@{/home}">Home</a>
+              <a class="nav-link" th:href="@{/topbooks}">Top Books</a>
+              <a class="nav-link" th:href="@{/topauthors}">Top Authors</a>
+              <a class="nav-link" th:href="@{/bucketlist}">Bucket List</a>
+              <a class="nav-link active" aria-current="page" th:href="@{/search}">Search</a>
+            </div>
           </div>
         </div>
       </div>
-    </nav>
-    <!-- Start your project here
-    <div id="menu">
-        <a th:href="@{/home}">Home</a>
-        <a th:href="@{/topbooks}">Top Books</a>
-        <a th:href="@{/topauthors}">Top Authors</a>
-        <a th:href="@{/bucketlist}">Bucket List</a>
-        <a th:href="@{/search}">Search</a>
-    </div> -->
-
-    <br>
-<br>
-<div id="heading">
-  Goodreads Ratings Search Tool
-</div>
-
-<div id="description">
-  <b>How To Use The Search Tool:</b> To use our search tool, simply enter the keyword for a genre that you want to read and our site will pull up books tagged with that key. For example, try BLANK!
-</div>
-
-
-<div id="options">
-  <form th:action="@{/search}" method="POST">
-    <div class="form-group">
-      <label for="search">Search:</label>
-      <input th:name="query" type="text" placeholder="Search...">
-    </div>
-    <br>
-    <div>
-      <select th:name="option">
-        <option value="author"></option>
-        <option value="title"></option>
-      </select>
     </div>
 
-    <!-- tag options -->
-    <div>
-      <!-- Default checkbox -->
-      <div class="form-check" th:each="tag, iter: ${tags}">
-        <input
-          class="form-check-input"
-          type="checkbox"
-          th:value="${tag.name}"
-          th:id="'tag' + ${iter.index}"
-          name="tags"
-        />
-        <label class="form-check-label" th:for="'tag' + ${iter.index}">
-          <span th:text="${tag.name}"></span>
-        </label>
-      </div>
-    </div>
-    <button type="submit"></button>
-  </form>
-</div>
 
-<br>
-<br>
-<br>
+      <div class="app-body">
+        <div class="top-wrapper"></div>
 
-<div id="results">
-  <table style="width:75%" align="center">
- <tr>
-   <th>Title</th>
-   <th>Authors</th>
-   <th>Average Rating</th>
-   <th>Number of Ratings</th>
-   <th>Cover Art</th>
- </tr>
- <tr>
-   <td>Insert</td>
-   <td>Your</td>
-   <td>Data</td>
-   <td>Here</td>
-   <td>Please</td>
- </tr>
-</table>
+        <br>
+        <br>
+        <div id="heading">
+          Goodreads Ratings Search Tool
+        </div>
+
+        <div id="description">
+          <b>How To Use The Search Tool:</b> To use our search tool, simply enter the keyword for a genre that you want to read and our site will pull up books tagged with that key. For example, try BLANK!
+        </div>
+
+
+        <div id="options">
+          <form th:action="@{/search}" method="POST">
+            <div class="form-group">
+              <label for="search">Search:</label>
+              <input th:name="query" type="text" placeholder="Search...">
+            </div>
+            <br>
+            <div>
+              <select th:name="option">
+                <option value="author"></option>
+                <option value="title"></option>
+              </select>
+            </div>
+
+            <!-- tag options -->
+            <div>
+              <!-- Default checkbox -->
+              <div class="form-check" th:each="tag, iter: ${tags}">
+                <input
+                        class="form-check-input"
+                        type="checkbox"
+                        th:value="${tag.name}"
+                        th:id="'tag' + ${iter.index}"
+                        name="tags"
+                />
+                <label class="form-check-label" th:for="'tag' + ${iter.index}">
+                  <span th:text="${tag.name}"></span>
+                </label>
+              </div>
+            </div>
+            <button type="submit"></button>
+          </form>
+        </div>
+
+        <br>
+        <br>
+        <br>
+
+        <div id="results">
+          <table style="width:75%" align="center">
+            <tr>
+              <th>Title</th>
+              <th>Authors</th>
+              <th>Average Rating</th>
+              <th>Number of Ratings</th>
+              <th>Cover Art</th>
+            </tr>
+            <tr>
+              <td>Insert</td>
+              <td>Your</td>
+              <td>Data</td>
+              <td>Here</td>
+              <td>Please</td>
+            </tr>
+          </table>
+        </div>
+
+
+      </div> <!--app body-->
+
+
+
+
+  </div>
 </div>
-    
     <!-- End your project here-->
 
     <!-- MDB -->

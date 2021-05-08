@@ -1,0 +1,19 @@
+.top-wrapper {
+    min-height: 60px;
+    flex-grow: 1;
+  }
+
+.app {
+    height: 100%;
+}
+.app-content {
+    height: 100%;
+}
+
+.app-header {
+    min-height: 60px;
+}
+
+.app-body {
+    height: 100%;
+}
