@@ -107,10 +107,10 @@ public class MainController {
     }
 
     @RequestMapping(value = "/search", method = RequestMethod.POST)
-	public ModelAndView search(ModelAndView modelAndView, @RequestParam(value = "query", required = false) String query, @RequestParam(value = "option", required = false) String option, @RequestParam(value = "tags", required = false) List<String> tags) {
+	public ModelAndView search(ModelAndView modelAndView, @RequestParam(value = "query", required = false) String query,  @RequestParam(value = "tags", required = false) List<String> tags) {
 
         System.out.println(query);
-        System.out.println(option);
+
 
         if(tags != null){
             System.out.println("\n---Tags---");

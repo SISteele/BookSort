@@ -114,16 +114,19 @@
 
                 
                 <div class="advanced-search">
+                  <form th:action="@{/search}" method="POST">
                   <!--Search box-->
                   <div class="card">
-                    <div class="card-header">
-                      Advanced Search
-                    </div>
+                    <img
+                            src="/img/search.png"
+                            class="card-img-top"
+                            alt="..."
+                    />
                     <div class="card-body">
                       <div class="input-group">
-                        <input type="search" class="form-control rounded" placeholder="Keywords" aria-label="Search"
+                        <input th:name="query" type="text" class="form-control rounded" placeholder="Keywords" aria-label="Search"
                                aria-describedby="search-addon" />
-                        <button type="button" class="btn btn-outline-primary">search</button>
+                        <button type="submit" class="btn btn-outline-primary">search</button>
                       </div>
                     </div>
                   </div>
@@ -236,6 +239,15 @@
                       </div>
                     </div>
                   </div>
+
+                  <!--footer-->
+                  <div class="card border-top">
+                    <div class="card-body d-flex justify-content-center">
+                      <button type="submit" class="btn btn-sm btn-primary waves-effect waves-light">Search</button>
+                      <button type="reset" class="btn btn-sm btn-danger waves-effect waves-light">Reset</button>
+                    </div>
+                  </div>
+                  </form>
                 </div> <!--advanced-search-->
 
 
@@ -258,24 +270,6 @@
         </div>
 
 
-        <div id="options">
-          <form th:action="@{/search}" method="POST">
-            <div class="form-group">
-              <label for="search">Search:</label>
-              <input th:name="query" type="text" placeholder="Search...">
-            </div>
-            <br>
-            <div>
-              <select th:name="option">
-                <option value="author"></option>
-                <option value="title"></option>
-              </select>
-            </div>
-
-
-            <button type="submit"></button>
-          </form>
-        </div>
 
         <br>
         <br>
