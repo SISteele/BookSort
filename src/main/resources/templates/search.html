@@ -68,14 +68,41 @@
         </style>
   </head>
   <body>
-    <!-- Start your project here-->
+
+  <!--Navbar-->
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" th:href="@{/home}">Goodreads</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-mdb-toggle="collapse"
+          data-mdb-target="#navbarNavAltMarkup"
+          aria-controls="navbarNavAltMarkup"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <i class="fas fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-link" th:href="@{/home}">Home</a>
+            <a class="nav-link" th:href="@{/topbooks}">Top Books</a>
+            <a class="nav-link" th:href="@{/topauthors}">Top Authors</a>
+            <a class="nav-link" th:href="@{/bucketlist}">Bucket List</a>
+            <a class="nav-link active" aria-current="page" th:href="@{/search}">Search</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <!-- Start your project here
     <div id="menu">
         <a th:href="@{/home}">Home</a>
         <a th:href="@{/topbooks}">Top Books</a>
         <a th:href="@{/topauthors}">Top Authors</a>
         <a th:href="@{/bucketlist}">Bucket List</a>
         <a th:href="@{/search}">Search</a>
-    </div>
+    </div> -->
 
     <br>
 <br>

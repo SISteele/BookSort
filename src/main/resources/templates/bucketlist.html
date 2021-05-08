@@ -1,7 +1,22 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>SQLad Term Project CSCI X370</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <title></title>
+  <!-- MDB icon -->
+  <link rel="icon" href="img/mdb-favicon.ico" type="image/x-icon" />
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" />
+  <!-- Google Fonts Roboto -->
+  <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
+  />
+  <!-- MDB -->
+  <link rel="stylesheet" th:href="@{/css/mdb.min.css}" />
+  <!--other styling-->
 <style type="text/css">
 body
 {
@@ -52,15 +67,32 @@ a:visited
 
 <body>
 
-</body>
-
-<div id="menu">
-  <a th:href="@{/home}">Home</a>
-  <a th:href="@{/topbooks}">Top Books</a>
-  <a th:href="@{/topauthors}">Top Authors</a>
-  <a th:href="@{/bucketlist}">Bucket List</a>
-  <a th:href="@{/search}">Search</a>
-</div>
+<!--Navbar-->
+<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" th:href="@{/home}">Goodreads</a>
+    <button
+            class="navbar-toggler"
+            type="button"
+            data-mdb-toggle="collapse"
+            data-mdb-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+    >
+      <i class="fas fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-link" th:href="@{/home}">Home</a>
+        <a class="nav-link" th:href="@{/topbooks}">Top Books</a>
+        <a class="nav-link" th:href="@{/topauthors}">Top Authors</a>
+        <a class="nav-link active" aria-current="page" th:href="@{/bucketlist}">Bucket List</a>
+        <a class="nav-link" th:href="@{/search}">Search</a>
+      </div>
+    </div>
+  </div>
+</nav>
 
 <br>
 <br>
@@ -98,4 +130,9 @@ a:visited
       </table>
 </div>
 
+<!-- MDB -->
+<script type="text/javascript" th:src="@{/js/mdb.min.js}"></script>
+<!-- Custom scripts -->
+<script type="text/javascript"></script>
+</body>
 </html>
