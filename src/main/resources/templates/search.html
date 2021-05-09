@@ -68,6 +68,11 @@
           font-size: 20px;
         }
         </style>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script th:src="@{/js/rating.js}"></script>
+
+
   </head>
   <body>
   <div class="app">
@@ -273,12 +278,19 @@
                       <!--book info-->
                       <div class="col-9">
                         <h6><span th:text="${book.title}"></span></h6>
-                        <span class="text-muted" th:text="${book.authors} + ' - ' + ${book.year}" ></span>
-                        <p>
-                          <span class="rating"></span>
-                          <span></span>
-                          <span th:text="${book.averageRating}"></span>
-                        </p>
+                        <span class="text-muted" th:text="${book.authors} + ' - ' + ${book.year}" style="width: 100%"></span>
+                        <br>
+                        <br>
+                          <div class="rating float-start">
+                            <div class="rating-content">
+                              <span class="stars" th:text="${book.averageRating}"></span>
+                            </div>
+                          </div>
+
+                          <span class="float-end" th:text="${book.averageRating}" style="margin-right: 35%; margin-top: 1.4%"></span>
+
+                          <span class="float-end text-muted" th:text="'based on ' + ${book.ratingsCount} + ' ratings'" style="font-size: 75%; "></span>
+
 
 
                       </div>

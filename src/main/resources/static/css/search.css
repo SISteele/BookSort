@@ -78,7 +78,7 @@
 }
 
 .result {
-    margin-bottom: 3em;
+    margin-bottom: 1em;
     max-height: 750px;
 
 }
@@ -98,4 +98,24 @@
 
 .query-results-num {
     margin-right: calc(33.333333% - 25px);
+}
+
+
+/* star rating */
+.rating {
+    font-size: 0;
+    padding-bottom: 16px;
+}
+.rating-content {
+    font-size: 13px;
+    display: inline-block;
+    vertical-align: top;
+    background: url('https://i.stack.imgur.com/rwkqF.png') 0 0 repeat-x;
+    width: 185px;
+    height: 35px;
+}
+.rating .rating-content span.stars span {
+    background: url('https://i.stack.imgur.com/rwkqF.png') 0 -36px repeat-x;
+    display: inline-block;
+    height: 35px;
 }
