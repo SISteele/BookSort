@@ -37,4 +37,12 @@ public class BooksService {
     public List<Books> findBooksByGoodreadsIds(List<Integer> ids){
         return booksRepository.findBooksByGoodreadsIds(ids);
     }
+
+    public List<Books> findBooksParameters(List<Integer> ids, String query){
+        return booksRepository.findBooksParameters(ids, query);
+    }
+
+    public List<Books> findBooksParameters(String query){
+        return booksRepository.findBooksParameters(query);
+    }
 }

@@ -53,4 +53,25 @@ public interface BooksRepository extends CrudRepository<Books, Integer>{
         nativeQuery = true
     )
     public List<Books> findBooksByGoodreadsIds(@Param("ids") List<Integer> ids);
+
+
+
+
+    @Query(
+            value = "SELECT * FROM books "
+                    + "WHERE (goodreads_book_id IN (:ids)) "
+                    + "AND ((:query is null OR lower(title) LIKE lower(concat('%', :query, '%'))) OR (:query is null OR lower(authors) LIKE lower(concat('%', :query, '%'))))",
+            nativeQuery = true
+    )
+    public List<Books> findBooksParameters(@Param("ids") List<Integer> ids, @Param("query") String query);
+
+
+    @Query(
+            value = "SELECT * FROM books "
+                    + "WHERE (:query is null OR lower(title) LIKE lower(concat('%', :query, '%'))) "
+                    + "OR (:query is null OR lower(authors) LIKE lower(concat('%', :query, '%')))",
+            nativeQuery = true
+    )
+    public List<Books> findBooksParameters(@Param("query") String query);
+
 }

@@ -111,9 +111,15 @@ public class MainController {
     @RequestMapping(value = "/search", method = RequestMethod.POST)
 	public ModelAndView search(ModelAndView modelAndView, @RequestParam(value = "query", required = false) String query,  @RequestParam(value = "tags", required = false) List<String> tags) {
 
-        System.out.println(query);
+        /* no query results in empty string; make it null for sql query to function properly with optional parameters*/
+        if(query.equals("")){
+            query = null;
+        }
 
+        List<Books> books = null;
+        List<Integer> goodreads_ids = null;
 
+        /* gets all goodreads_book_ids associated with the tags */
         if(tags != null){
             System.out.println("\n---Tags---");
             for(String tag: tags){
@@ -126,21 +132,41 @@ public class MainController {
                 System.out.println(id);
             }
 
-            List<Integer> goodreads_ids = book_tagsService.findGoodreadsIds(ids);
+            goodreads_ids = book_tagsService.findGoodreadsIds(ids);
             System.out.println("\n---Goodreads IDS---");
             for(Integer id: goodreads_ids){
                 System.out.println(id);
             }
+        } // tags not null
 
-            List<Books> books = booksService.findBooksByGoodreadsIds(goodreads_ids);
-            System.out.println("\n---Books---");
-            for(Books book: books){
-                System.out.println(book.getTitle());
-            }
+        /*
+        *  native queries do not seem to support optional lists for 'IN' clause,
+        *  so separate queries are needed depending on if it is null.
+        * */
+        if(goodreads_ids != null){ // tags were specified when searching;
+            books = booksService.findBooksParameters(goodreads_ids, query);
+        }else{ // no tags specified when searching;
+            books = booksService.findBooksParameters(query);
+        }
 
+        //books = booksService.findBooksByGoodreadsIds(goodreads_ids);
+        System.out.println("\n---Books---");
+        for(Books book: books){
+            System.out.println(book.getTitle());
+        }
+
+        if(books != null){
             modelAndView.addObject("books", books);
             modelAndView.addObject("results", books.size());
-        } // tags not null
+        }else{
+            modelAndView.addObject("results", 0);
+        }
+
+
+
+        System.out.println("Query: " + query);
+
+
 
         List<TagsTopTags> populartags = tagsService.findTop100();
         modelAndView.addObject("tags", populartags);

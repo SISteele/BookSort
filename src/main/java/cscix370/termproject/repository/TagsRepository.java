@@ -18,7 +18,7 @@ public interface TagsRepository extends CrudRepository<Tags, Integer>{
                 + "(SELECT tag_id FROM book_tags "
                 + "GROUP BY tag_id "
                 + "ORDER BY COUNT(tag_id) DESC "
-                + "LIMIT 20) AS ids "
+                + "LIMIT 100) AS ids "
                 + "ON tags.tag_id = ids.tag_id",
         nativeQuery = true
     )
