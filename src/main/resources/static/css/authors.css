@@ -5,7 +5,7 @@
 .top-wrapper {
     min-height: 60px;
     flex-grow: 1;
-  }
+}
 
 .app {
     height: 100%;
@@ -53,7 +53,7 @@
 }
 
 .results-container > div {
-    flex: 0 0 33.333333%;/* or - flex: 0 50% - or - flex-basis: 50% - */
+    flex: 0 0 20%;/* or - flex: 0 50% - or - flex-basis: 50% - */
 }
 
 /* Tag selection (max 2 items per row)*/
@@ -90,18 +90,15 @@
 .cover {
     min-width: 100px;
 
+
 }
 
-.min-width-490 {
-    min-width: 490px;
+.min-width-400 {
+    min-width: 400px;
 }
 
 .img {
 
-}
-
-.query-results-num {
-    margin-right: calc(33.333333% - 25px);
 }
 
 

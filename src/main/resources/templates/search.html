@@ -129,7 +129,7 @@
                     />
                     <div class="card-body">
                       <div class="input-group">
-                        <input th:name="query" type="text" class="form-control rounded" placeholder="Keywords" aria-label="Search"
+                        <input th:name="query" type="text" class="form-control rounded" placeholder="search for author or title" aria-label="Search"
                                aria-describedby="search-addon" />
                         <button type="submit" class="btn btn-outline-primary">search</button>
                       </div>
@@ -265,7 +265,7 @@
               </p>
               <h2>Search Results</h2>
               <div class="results-body results-container">
-                <div class="card result" th:each="book : ${books}">
+                <div class="card result min-width-490" th:each="book : ${books}">
                   <div class="card-body">
                     <div class="row">
                       <!--image-->
@@ -276,7 +276,7 @@
                       </div>
 
                       <!--book info-->
-                      <div class="col-9">
+                      <div class="col-9 ">
                         <h6><span th:text="${book.title}"></span></h6>
                         <span class="text-muted" th:text="${book.authors} + ' - ' + ${book.year}" style="width: 100%"></span>
                         <br>

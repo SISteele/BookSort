@@ -16,116 +16,150 @@
   />
   <!-- MDB -->
   <link rel="stylesheet" th:href="@{/css/mdb.min.css}" />
+  <!--css files-->
+  <link rel="stylesheet" th:href="@{/css/authors.css}" />
   <!--other styling-->
-<style type="text/css">
-body
-{
-  background-color: #f2f2f2;
-}
-#menu
-{
-  font-family: sans-serif;
-  font-size: 22px;
-  color: white;
-  font-weight: bolder;
-  padding: 6px;
-  background-color: #5cd65c;
-  border: 2px solid #2eb82e;
-  margin: auto;
-}
-a:link
-{
-  color: white;
-}
-a:visited
-{
-  color: white;
-}
-#heading
-{
- font-family: sans-serif;
- font-size: 32px;
- color: white;
- font-weight: bolder;
- border: 2px solid #2eb82e;
- width: 505px;
- background-color: #5cd65c;
- margin: auto;
- text-align: center;
- vertical-align: middle;
-}
-#description
-{
-  padding: 50px;
-  font-family: sans-serif;
-  font-size: 25px;
-  text-align: center;
-}
-</style>
+  <style type="text/css">
+    body
+    {
+      background-color: #f2f2f2;
+    }
+    #menu
+    {
+      font-family: sans-serif;
+      font-size: 22px;
+      color: white;
+      font-weight: bolder;
+      padding: 6px;
+      background-color: #5cd65c;
+      border: 2px solid #2eb82e;
+      margin: auto;
+    }
+    a:link
+    {
+      color: white;
+    }
+    a:visited
+    {
+      color: white;
+    }
+    #heading
+    {
+      font-family: sans-serif;
+      font-size: 32px;
+      color: white;
+      font-weight: bolder;
+      border: 2px solid #2eb82e;
+      width: 505px;
+      background-color: #5cd65c;
+      margin: auto;
+      text-align: center;
+      vertical-align: middle;
+    }
+    #description
+    {
+      padding: 50px;
+      font-family: sans-serif;
+      font-size: 25px;
+      text-align: center;
+    }
+    #options
+    {
+      font-size: 20px;
+    }
+  </style>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script th:src="@{/js/rating.js}"></script>
+
 
 </head>
-
 <body>
-
-<!--Navbar-->
-<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
-    <a class="navbar-brand" th:href="@{/home}">Goodreads</a>
-    <button
-            class="navbar-toggler"
-            type="button"
-            data-mdb-toggle="collapse"
-            data-mdb-target="#navbarNavAltMarkup"
-            aria-controls="navbarNavAltMarkup"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-    >
-      <i class="fas fa-bars"></i>
-    </button>
-    <div class="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-        <a class="nav-link" th:href="@{/home}">Home</a>
-        <a class="nav-link" th:href="@{/topbooks}">Top Books</a>
-        <a class="nav-link active" aria-current="page" th:href="@{/topauthors}">Top Authors</a>
-        <a class="nav-link" th:href="@{/bucketlist}">Bucket List</a>
-        <a class="nav-link" th:href="@{/search}">Search</a>
+<div class="app">
+  <div class="app-content">
+    <div class="app-header">
+      <!--Navbar-->
+      <div class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" th:href="@{/home}">Goodreads</a>
+          <button
+                  class="navbar-toggler"
+                  type="button"
+                  data-mdb-toggle="collapse"
+                  data-mdb-target="#navbarNavAltMarkup"
+                  aria-controls="navbarNavAltMarkup"
+                  aria-expanded="false"
+                  aria-label="Toggle navigation"
+          >
+            <i class="fas fa-bars"></i>
+          </button>
+          <div class="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+              <a class="nav-link" th:href="@{/home}">Home</a>
+              <a class="nav-link" th:href="@{/topbooks}">Top Books</a>
+              <a class="nav-link active" aria-current="page" th:href="@{/topauthors}">Top Authors</a>
+              <a class="nav-link" th:href="@{/bucketlist}">Bucket List</a>
+              <a class="nav-link" th:href="@{/search}">Search</a>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</nav>
-
-<br>
-<br>
-
-<div id="heading">
-  Goodreads Ratings Search Tool
-</div>
 
 
+    <div class="app-body">
+      <div class="top-wrapper"></div>
+      <div class="top-wrapper text-center">
+        <h2>Top 100 authors (with 5 or more books)</h2>
+      </div>
+      <div class="container-fluid">
+        <div class="row">
+          <!--results column-->
+          <div class="col-lg-12 col-md-12">
+            <div class="results-body results-container justify-content-center">
+              <div class="card result min-width-400" th:each="book : ${books}">
+                <div class="card-body">
+                  <div class="row">
 
-<div id="description">
-  Listed below are the top 100 rated authors on Goodreads who have published at least 5 books. These authors have been ranked according to their average book rating across all of their books on Goodreads as found from a database consisting of more than a million individual ratings.
-</div>
 
-<div id="results">
-  <table style="width:50%" align="center">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Average Book Rating</th>
-        <th>Number Of Books</th>
-      </tr>
-    </thead>
-    <tbody>
-     <tr th:each="book : ${books}">
-      <td><span th:text="${book.authors}"></span></td>
-      <td><span th:text="${book.rating}"></span></td>
-      <td><span th:text="${book.count}"></span></td>
-    </tr> 
-    </tbody>
-    
-  </table>
-</div>
+                    <!--book info-->
+                    <div class="col-12">
+                      <h6><span th:text="${book.authors}"></span></h6>
+                      <span class="text-muted" th:text="${book.count} + ' books in Goodreads '" style="width: 100%"></span>
+                      <br>
+                      <br>
+                      <div class="rating float-start">
+                        <div class="rating-content">
+                          <span class="stars" th:text="${book.rating}"></span>
+                        </div>
+                      </div>
+
+                      <span class="float-end" th:text="${book.rating} + ' average rating'" style="margin-right: 5%; margin-top: 1.5%"></span>
+
+
+
+
+
+                    </div>
+                  </div>
+                </div>
+
+              </div> <!--card result-->
+
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+
+
+
+    </div> <!--app body-->
+
+  </div> <!--app content-->
+</div> <!--app-->
+<!-- End your project here-->
 
 <!-- MDB -->
 <script type="text/javascript" th:src="@{/js/mdb.min.js}"></script>

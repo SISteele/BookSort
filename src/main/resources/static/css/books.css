@@ -5,7 +5,7 @@
 .top-wrapper {
     min-height: 60px;
     flex-grow: 1;
-  }
+}
 
 .app {
     height: 100%;
@@ -90,10 +90,11 @@
 .cover {
     min-width: 100px;
 
+
 }
 
-.min-width-490 {
-    min-width: 490px;
+.min-width-650 {
+    min-width: 650px;
 }
 
 .img {
