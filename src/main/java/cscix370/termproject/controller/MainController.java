@@ -100,7 +100,9 @@ public class MainController {
 
         List<TagsTopTags> tags = tagsService.findTop100();
         modelAndView.addObject("tags", tags);
-        
+
+        List<Books> books = booksService.findTop100();
+        modelAndView.addObject("books", books);
 
         modelAndView.setViewName("search");
 		return modelAndView;
@@ -136,10 +138,14 @@ public class MainController {
                 System.out.println(book.getTitle());
             }
 
+            modelAndView.addObject("books", books);
+            modelAndView.addObject("results", books.size());
         } // tags not null
-        
-        
-        modelAndView.setViewName("redirect:search");
+
+        List<TagsTopTags> populartags = tagsService.findTop100();
+        modelAndView.addObject("tags", populartags);
+
+        modelAndView.setViewName("search");
 		return modelAndView;
     }
     

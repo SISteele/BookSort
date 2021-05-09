@@ -20,8 +20,8 @@
 
 .app-body {
     height: 100%;
-    margin-left: 3em;
-    margin-right: 3em;
+    margin-right: 10vw;
+    margin-left: 10vw;
 }
 
 .fill {
@@ -30,7 +30,7 @@
 }
 
 .content-side {
-
+    min-width: 250px;
 }
 
 
@@ -45,7 +45,16 @@
 .accordion-collapse {
     border-top: none;
 }
+/* Results selection (max 2 items per row)*/
+.results-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+}
 
+.results-container > div {
+    flex: 0 0 33.333333%;/* or - flex: 0 50% - or - flex-basis: 50% - */
+}
 
 /* Tag selection (max 2 items per row)*/
 .tag {
@@ -62,4 +71,31 @@
     /*demo*/
 
     margin-bottom: 10px;
+}
+
+.results-body {
+    margin-top: 2em;
+}
+
+.result {
+    margin-bottom: 3em;
+    max-height: 750px;
+
+}
+
+.book-cover {
+
+}
+
+.cover {
+
+
+}
+
+.img {
+
+}
+
+.query-results-num {
+    margin-right: calc(33.333333% - 25px);
 }

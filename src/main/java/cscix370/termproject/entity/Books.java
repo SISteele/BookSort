@@ -25,8 +25,9 @@ public class Books {
     private Integer isbn;
 
     private String authors;
-     
-    private Integer original_publication_year;
+
+    @Column(name = "original_publication_year")
+    private Integer year;
     
     private String original_title; 
     
@@ -39,9 +40,9 @@ public class Books {
     
     @Column(name = "ratings_count")
     private Integer ratingsCount;
-    
+
     private Integer work_ratings_count;
-    
+
     private Integer work_text_reviews_count;
     
     private Integer ratings_1;
@@ -78,5 +79,7 @@ public class Books {
     public Integer getRatingsCount(){
         return ratingsCount;
     }
+
+    public Integer getYear() { return year; }
 
 }
