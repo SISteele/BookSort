@@ -60,18 +60,19 @@ public interface BooksRepository extends CrudRepository<Books, Integer>{
     @Query(
             value = "SELECT * FROM books "
                     + "WHERE (goodreads_book_id IN (:ids)) "
-                    + "AND ((:query is null OR lower(title) LIKE lower(concat('%', :query, '%'))) OR (:query is null OR lower(authors) LIKE lower(concat('%', :query, '%'))))",
+                    + "AND ((:query is null OR lower(title) LIKE lower(concat('%', :query, '%'))) OR (:query is null OR lower(authors) LIKE lower(concat('%', :query, '%')))) "
+                    + "AND (average_rating BETWEEN :min AND :max)",
             nativeQuery = true
     )
-    public List<Books> findBooksParameters(@Param("ids") List<Integer> ids, @Param("query") String query);
+    public List<Books> findBooksParameters(@Param("ids") List<Integer> ids, @Param("query") String query, @Param("min") double min, @Param("max") double max);
 
 
     @Query(
             value = "SELECT * FROM books "
-                    + "WHERE (:query is null OR lower(title) LIKE lower(concat('%', :query, '%'))) "
-                    + "OR (:query is null OR lower(authors) LIKE lower(concat('%', :query, '%')))",
+                    + "WHERE (average_rating BETWEEN :min AND :max) "
+                    + "AND ((:query is null OR lower(title) LIKE lower(concat('%', :query, '%'))) OR ((:query is null OR lower(authors) LIKE lower(concat('%', :query, '%')))))",
             nativeQuery = true
     )
-    public List<Books> findBooksParameters(@Param("query") String query);
+    public List<Books> findBooksParameters(@Param("query") String query, @Param("min") double min, @Param("max") double max);
 
 }

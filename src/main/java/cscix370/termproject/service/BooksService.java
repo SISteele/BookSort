@@ -38,11 +38,11 @@ public class BooksService {
         return booksRepository.findBooksByGoodreadsIds(ids);
     }
 
-    public List<Books> findBooksParameters(List<Integer> ids, String query){
-        return booksRepository.findBooksParameters(ids, query);
+    public List<Books> findBooksParameters(List<Integer> ids, String query, double min, double max){
+        return booksRepository.findBooksParameters(ids, query, min, max);
     }
 
-    public List<Books> findBooksParameters(String query){
-        return booksRepository.findBooksParameters(query);
+    public List<Books> findBooksParameters(String query, double min, double max){
+        return booksRepository.findBooksParameters(query, min, max);
     }
 }

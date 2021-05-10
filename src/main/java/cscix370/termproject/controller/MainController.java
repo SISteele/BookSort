@@ -109,7 +109,7 @@ public class MainController {
     }
 
     @RequestMapping(value = "/search", method = RequestMethod.POST)
-	public ModelAndView search(ModelAndView modelAndView, @RequestParam(value = "query", required = false) String query,  @RequestParam(value = "tags", required = false) List<String> tags) {
+	public ModelAndView search(ModelAndView modelAndView, @RequestParam(value = "query", required = false) String query,  @RequestParam(value = "tags", required = false) List<String> tags, @RequestParam(value = "ratingmin", required = true) double min, @RequestParam(value = "ratingmax", required = true) double max) {
 
         /* no query results in empty string; make it null for sql query to function properly with optional parameters*/
         if(query.equals("")){
@@ -121,32 +121,18 @@ public class MainController {
 
         /* gets all goodreads_book_ids associated with the tags */
         if(tags != null){
-            System.out.println("\n---Tags---");
-            for(String tag: tags){
-                System.out.println(tag);
-            }
-
             List<Integer> ids = tagsService.findTagIds(tags);
-            System.out.println("\n---Tags IDS---");
-            for(Integer id: ids){
-                System.out.println(id);
-            }
-
             goodreads_ids = book_tagsService.findGoodreadsIds(ids);
-            System.out.println("\n---Goodreads IDS---");
-            for(Integer id: goodreads_ids){
-                System.out.println(id);
-            }
         } // tags not null
 
         /*
         *  native queries do not seem to support optional lists for 'IN' clause,
         *  so separate queries are needed depending on if it is null.
         * */
-        if(goodreads_ids != null){ // tags were specified when searching;
-            books = booksService.findBooksParameters(goodreads_ids, query);
+        if(tags != null){ // tags were specified when searching;
+            books = booksService.findBooksParameters(goodreads_ids, query, min/20, max/20);
         }else{ // no tags specified when searching;
-            books = booksService.findBooksParameters(query);
+            books = booksService.findBooksParameters(query, min/20, max/20);
         }
 
         //books = booksService.findBooksByGoodreadsIds(goodreads_ids);
@@ -163,9 +149,8 @@ public class MainController {
         }
 
 
-
-        System.out.println("Query: " + query);
-
+    System.out.println("lower range: " + min/20);
+        System.out.println("lower range: " + max/20);
 
 
         List<TagsTopTags> populartags = tagsService.findTop100();
