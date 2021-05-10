@@ -1,0 +1,143 @@
+body, html {
+    height: 100%;
+}
+.bg {
+    /* The image used */
+    background-image: url("../img/goodreads.png");
+    background-color: chocolate;
+    /* Full height */
+    height: 100%;
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.text-xs {
+    font-size: smaller;
+}
+
+.top-wrapper {
+    min-height: 60px;
+    flex-grow: 1;
+}
+
+.app {
+    height: 100%;
+}
+.app-content {
+    height: 100%;
+}
+
+.app-header {
+    min-height: 60px;
+}
+
+.app-body {
+    height: 100%;
+    margin-right: 10vw;
+    margin-left: 10vw;
+}
+
+.fill {
+    height: 100%;
+    width: 100%;
+}
+
+.content-side {
+    min-width: 250px;
+}
+
+
+.advanced-search {
+    min-width: 150px;
+}
+
+.accordion-header {
+    border-bottom: none;
+}
+
+.accordion-collapse {
+    border-top: none;
+}
+/* Results selection (max 2 items per row)*/
+.results-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+}
+
+.results-container > div {
+    flex: 0 0 33.333333%;/* or - flex: 0 50% - or - flex-basis: 50% - */
+}
+
+/* Tag selection (max 2 items per row)*/
+.tag {
+    width: 100%
+}
+
+.tagcontainer {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.tagcontainer > div {
+    flex: 50%; /* or - flex: 0 50% - or - flex-basis: 50% - */
+    /*demo*/
+
+    margin-bottom: 10px;
+}
+
+.results-body {
+    margin-top: 2em;
+}
+
+.result {
+    margin-bottom: 1em;
+    max-height: 750px;
+
+}
+
+.book-cover {
+    min-width: 100px;
+}
+
+.cover {
+    min-width: 100px;
+
+
+}
+
+.min-width-650 {
+    min-width: 650px;
+}
+
+.img {
+
+}
+
+.query-results-num {
+    margin-right: calc(33.333333% - 25px);
+}
+
+
+/* star rating */
+.rating {
+    font-size: 0;
+    padding-bottom: 16px;
+}
+.rating-content {
+    font-size: 13px;
+    display: inline-block;
+    vertical-align: top;
+    background: url('https://i.stack.imgur.com/rwkqF.png') 0 0 repeat-x;
+    width: 185px;
+    height: 35px;
+}
+.rating .rating-content span.stars span {
+    background: url('https://i.stack.imgur.com/rwkqF.png') 0 -36px repeat-x;
+    display: inline-block;
+    height: 35px;
+}
+
